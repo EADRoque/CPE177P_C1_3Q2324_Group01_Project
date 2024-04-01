@@ -65,7 +65,7 @@ def main(page:ft.Page):
 			content=ft.Row([
 			ft.Container(
 	       		margin=ft.margin.only(left=(page.window_width/5) + 30),
-	         	content=ft.Text("1st Semester 2024-25 Enrollment", size=36, weight=ft.FontWeight.BOLD, color=ft.colors.GREY),
+         		content=ft.Text("1st SEMESTER 2024-25 ENROLLMENT", size=30, weight=ft.FontWeight.BOLD, color=ft.colors.GREY),
 	         	),
 			ft.Container(
 				content=ft.Image(
