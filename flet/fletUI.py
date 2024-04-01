@@ -63,7 +63,10 @@ def main(page:ft.Page):
 			bgcolor=ft.colors.WHITE,
 			padding=10,
 			content=ft.Row([
-			ft.Container(),
+			ft.Container(
+	       		margin=ft.margin.only(left=(page.window_width/5) + 30),
+	         	content=ft.Text("1st Semester 2024-25 Enrollment", size=36, weight=ft.FontWeight.BOLD, color=ft.colors.GREY),
+	         	),
 			ft.Container(
 				content=ft.Image(
 					src="eece.png",
@@ -72,7 +75,7 @@ def main(page:ft.Page):
 				)
  
 				],
-                spacing=990,
+                spacing=100,
                 )
  
 			)
