@@ -8,9 +8,27 @@ def main(page:ft.Page):
         width=page.window_width,
         height=page.window_height,
         border_radius=20,             
-    )
+    )       
+
+    def getFN(e):
+        fullname = str(e.control.value)
+        print(fullname)
+        return fullname
+    
+    def getId(e):
+        idnum = str(e.control.value)
+        print(idnum)
+        return idnum
+    
+    def login(e):
+
+        if (getFN == "admin" and getId == 1234567):
+            print("Logged in")
+        else:
+            print("out")
+
     loginBox = ft.Container(
-        alignment=ft.alignment.center, # Align all items to the center
+        alignment=ft.alignment.center,
         padding=ft.padding.all(150),
         content=ft.Container(
             bgcolor=ft.colors.WHITE,
@@ -37,9 +55,9 @@ def main(page:ft.Page):
                     alignment=ft.alignment.center,
                     content=ft.Column([
                         ft.Text("Full Name", size=20, weight=ft.FontWeight.BOLD, color="#0d2650"),
-                        ft.TextField(label=None, width=300),
+                        ft.TextField(label=None, width=300, on_submit=getFN),
                         ft.Text("ID", size=20, weight=ft.FontWeight.BOLD, color="#0d2650"),
-                        ft.TextField(label="####", width=300),
+                        ft.TextField(label="####", width=300, on_submit=getId),
                         ft.Row([
                             ft.Dropdown( #dept
                                 width=140,
@@ -58,7 +76,12 @@ def main(page:ft.Page):
                                 ],)
                         ],
                         spacing=20),
-                        ft.ElevatedButton(text="START", height=40, width=300, style=ft.ButtonStyle(bgcolor="#0D2650", color="#D3DEF1", shape=ft.RoundedRectangleBorder(radius=10)))
+                        ft.ElevatedButton(
+                            text="START",
+                            height=40, 
+                            width=300, 
+                            style=ft.ButtonStyle(bgcolor="#0D2650", color="#D3DEF1", shape=ft.RoundedRectangleBorder(radius=10)),
+                            on_click=login)
 
 
                     ])
@@ -68,12 +91,15 @@ def main(page:ft.Page):
             
         )      
     )
-
+    
     page.add(
         ft.Stack([
             bg,
-            loginBox
-            ])
+            loginBox,        
+            ]),
+
+        
+        
     )
 
 ft.app(target=main)
