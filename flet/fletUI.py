@@ -1,38 +1,163 @@
 import flet as ft
+from flet import TextField, ElevatedButton, Image, Icon, Text, Container, Row, Column, Dropdown, Stack
+from flet_core.control_event import ControlEvent
 
 def main(page:ft.Page):
-	page.padding = 0
-	page.spacing = 0    
+    page.padding = 0
+    page.spacing = 0    
+    page.theme_mode = ft.ThemeMode.LIGHT
+    page.window_resizable = False  
+    
+    textUsername: TextField = TextField(label="FULL NAME", text_align=ft.TextAlign.LEFT, width=300)
+    textPassword: TextField = TextField(label="ID", text_align=ft.TextAlign.LEFT, width=300, password=True)
+    dropDept: Dropdown = Dropdown(label="DEPT.", width=140, options=[ft.dropdown.Option("CPE"), ft.dropdown.Option("ECE"), ft.dropdown.Option("EE"),])
+    dropMode: Dropdown = Dropdown(label="MODE", width=140, options=[ft.dropdown.Option("ONSITE"), ft.dropdown.Option("ONLINE"),])
+    buttonStart: ElevatedButton = ElevatedButton(text="START", width=300, disabled=True)
+    
+    def validate(e: ControlEvent) -> None:
+        if all([textUsername.value, textPassword.value, dropDept.value, dropMode.value]):
+            buttonStart.disabled = False
+        else:
+            buttonStart.disabled = True
+        
+        page.update()
+        
+    def login(e: ControlEvent) -> None:
+        print("Username: ", textUsername.value)
+        print("Password: ", textPassword.value)
+        print("Dept: ", dropDept.value)
+        print("Mode: ", dropMode.value)
 
-	def view_Q(e):
-		mainContentView.visible=True
-		mainContentFull.visible=False
-		mainContentAccept.visible=False
-		page.update()
+        if textUsername.value == "admin" and  textPassword.value == "1234567":
+            page.clean()
+            page.add(
+                Stack([
+                    mainbg,
+                    eece,
+                    sidemenu,
+                    mainContentView,
+                    mainContentFull,
+                    mainContentAccept
+			    ])
+            )
+        else:
+            page.clean()
+            page.add(
+                Stack([
+                    loginBG,
+                    failedLogin,
+                ])
+            )
+
+    def view_Q(e):
+        mainContentView.visible=True
+        mainContentFull.visible=False
+        mainContentAccept.visible=False
+        page.update()
  
-	def full_Q(e):
-		mainContentView.visible=False
-		mainContentFull.visible=True
-		mainContentAccept.visible=False
-		page.update()
+    def full_Q(e):
+        mainContentView.visible=False
+        mainContentFull.visible=True
+        mainContentAccept.visible=False
+        page.update()
    
-	def accept_Stud(e):
-		mainContentView.visible=False
-		mainContentFull.visible=False
-		mainContentAccept.visible=True
-		page.update()
+    def accept_Stud(e):
+        mainContentView.visible=False
+        mainContentFull.visible=False
+        mainContentAccept.visible=True
+        page.update()
+          
+    textUsername.on_change = validate
+    textPassword.on_change = validate
+    dropDept.on_change = validate
+    dropMode.on_change = validate
+    buttonStart.on_click = login
+
+    loginBG = ft.Container(
+        bgcolor="#0d2650",
+        width=page.window_width,
+        height=page.window_height,
+        border_radius=20,             
+    )     
+    
+    failedLogin = Container(
+        alignment=ft.alignment.center,
+        padding=ft.padding.all(100),
+		shadow=ft.BoxShadow(spread_radius=1,
+			blur_radius=15,
+			color="#3c3744",
+			offset=ft.Offset(0, 0),
+			blur_style=ft.ShadowBlurStyle.OUTER,
+		),        
+        content=Container(
+            bgcolor="#eb4034",
+            width=400,
+            height=500,
+            border_radius=20,
+            alignment=ft.alignment.center,
+            content=Text("Failed Login",weight=ft.FontWeight.BOLD, color="#0d2650", size=48)
+        )
+    )
+    
+    loginBox = Container(
+        alignment=ft.alignment.center,
+        padding=ft.padding.all(100),
+		shadow=ft.BoxShadow(spread_radius=1,
+			blur_radius=15,
+			color="#3c3744",
+			offset=ft.Offset(0, 0),
+			blur_style=ft.ShadowBlurStyle.OUTER,
+		),
+        content=Container(
+            bgcolor=ft.colors.WHITE,
+            width=400,
+            height=500,
+            border_radius=20,
+            alignment=ft.alignment.center,
+            padding=ft.padding.all(50),
+            content=Column([
+                Row([
+                    Container(
+                        Text("ENROLLMENT\nQUEUEING\nSYSTEM", weight=ft.FontWeight.BOLD, color="#0d2650")
+                    ),
+                    Container(
+                        content=Image(
+                            src="eece.png",
+                            height=90,
+                        ),
+                    )
+                ],
+                spacing=70,
+                ),
+                Container(
+                    alignment=ft.alignment.center,
+                    content=Column([
+                        Text("Full Name", size=20, weight=ft.FontWeight.BOLD, color="#0d2650"),
+                        textUsername,
+                        Text("ID", size=20, weight=ft.FontWeight.BOLD, color="#0d2650"),
+                        textPassword,
+                        Row([
+                            dropDept,
+                            dropMode
+                        ],
+                        spacing=20),
+                        buttonStart
+                    ])
+                )
+                
+            ])
+            
+        )      
+    )
   
-	sidemenu = ft.Container(
-		content=ft.Column([
-			ft.Image(src="avatarIcon.png",width=500,),
-			ft.Text("Name",width=page.window_width/5, text_align=ft.TextAlign.CENTER),
-			ft.Text("Department",width=page.window_width/5, text_align=ft.TextAlign.CENTER),
-			ft.ElevatedButton(text="VIEW QUEUE",color="#3c3744", width=page.window_width/5, bgcolor=ft.colors.WHITE, on_click=view_Q),#
-			ft.ElevatedButton(text="FULL QUEUE",color="#3c3744", width=page.window_width/5, bgcolor=ft.colors.WHITE, on_click=full_Q),#
-			ft.ElevatedButton(text="ACCEPT STUDENT",color="#3c3744", width=page.window_width/5, bgcolor=ft.colors.WHITE, on_click=accept_Stud),#
-			# ft.TextButton(text=".", width=page.window_width/5, bgcolor=ft.colors.WHITE),
-			# ft.TextButton(text=".", width=page.window_width/5, bgcolor=ft.colors.WHITE),
-			# ft.TextButton(text=".", width=page.window_width/5, bgcolor=ft.colors.WHITE),	
+    sidemenu = Container(
+		content=Column([
+			Image(src="avatarIcon.png",width=500,),
+			Text("{textUsername.value}",width=page.window_width/5, size=20, weight=ft.FontWeight.BOLD, color=ft.colors.WHITE, text_align=ft.TextAlign.CENTER),
+			Text("{dropDept.value}",width=page.window_width/5, size=20, weight=ft.FontWeight.BOLD, color=ft.colors.WHITE, text_align=ft.TextAlign.CENTER),
+			ElevatedButton(text="VIEW QUEUE",color="#3c3744", width=page.window_width/5, bgcolor=ft.colors.WHITE, on_click=view_Q),#
+			ElevatedButton(text="FULL QUEUE",color="#3c3744", width=page.window_width/5, bgcolor=ft.colors.WHITE, on_click=full_Q),#
+			ElevatedButton(text="ACCEPT STUDENT",color="#3c3744", width=page.window_width/5, bgcolor=ft.colors.WHITE, on_click=accept_Stud),#	
 		],
 
   		),
@@ -45,30 +170,30 @@ def main(page:ft.Page):
 	
 	)
   
-	bg = ft.Container(
+    mainbg = Container(
 		bgcolor="#D3DEF1",
 		width=page.window_width,
         height=page.window_height,
         border_radius=20,             
     )
 
-	eece = ft.Container(
+    eece = Container(
 		width=page.window_width,
 		height=110,
 		alignment=ft.alignment.center_right,
 		border_radius=20,
 		margin=ft.margin.all(25),
-		content=ft.Column([
-			ft.Container(
+		content=Column([
+			Container(
 			bgcolor=ft.colors.WHITE,
 			padding=10,
-			content=ft.Row([
-			ft.Container(
-	       		margin=ft.margin.only(left=(page.window_width/5) + 30),
-         		content=ft.Text("1st SEMESTER 2024-25 ENROLLMENT", size=30, weight=ft.FontWeight.BOLD, color=ft.colors.GREY),
-	         	),
-			ft.Container(
-				content=ft.Image(
+			content=Row([
+			Container(
+       		margin=ft.margin.only(left=(page.window_width/5) + 30),
+         	content=Text("1st SEMESTER 2024-25 ENROLLMENT", size=30, weight=ft.FontWeight.BOLD, color=ft.colors.GREY),
+         	),
+			Container(
+				content=Image(
 					src="eece.png",
 					height=100,
 					),
@@ -83,11 +208,11 @@ def main(page:ft.Page):
 		])
 	)
  
-	mainContentView = ft.Container(
+    mainContentView = Container(
 		margin=ft.margin.only(left = page.window_width/4, top = page.window_height/3),
 		alignment=ft.alignment.center,
-  		content = ft.Column([ft.Row([
-    		ft.Container( #in queue
+  		content = Column([ft.Row([
+    		Container( #in queue
 			border_radius=10,
 			bgcolor=ft.colors.WHITE,
 			height= 100,
@@ -98,15 +223,15 @@ def main(page:ft.Page):
 				color="#3c3744",
 				offset=ft.Offset(0, 0),
 				blur_style=ft.ShadowBlurStyle.OUTER,
-				),
-   			content=ft.Row([
-				ft.Icon(name=ft.icons.HOURGLASS_BOTTOM_ROUNDED, color="#3c3744", size=40),
-          		ft.Text("In Queue: 0",color="#3c3744", size=24, weight=ft.FontWeight.BOLD)
+			),
+   			content=Row([
+				Icon(name=ft.icons.HOURGLASS_BOTTOM_ROUNDED, color="#3c3744", size=40),
+          		Text("In Queue: 0",color="#3c3744", size=24, weight=ft.FontWeight.BOLD)
             	],
                 alignment=ft.MainAxisAlignment.CENTER
             ),	
 			),
-			ft.Container( #completed
+			Container( #completed
 			border_radius=10,
 			bgcolor=ft.colors.WHITE,
 			height= 100,
@@ -118,15 +243,15 @@ def main(page:ft.Page):
 				offset=ft.Offset(0, 0),
 				blur_style=ft.ShadowBlurStyle.OUTER,
 				),
-   			content=ft.Row([
-				ft.Icon(name=ft.icons.CHECKLIST_ROUNDED, color="#3c3744", size=40),
-          		ft.Text("Completed: 0",color="#3c3744", size=24, weight=ft.FontWeight.BOLD),
+   			content=Row([
+				Icon(name=ft.icons.CHECKLIST_ROUNDED, color="#3c3744", size=40),
+          		Text("Completed: 0",color="#3c3744", size=24, weight=ft.FontWeight.BOLD),
             	],
 				alignment=ft.MainAxisAlignment.CENTER
             )	
 			)],
             spacing=90),
-			ft.Container( #data table
+			Container( #data table
 				border_radius=10,
 				bgcolor=ft.colors.WHITE,
 				shadow=ft.BoxShadow(spread_radius=1,
@@ -181,23 +306,23 @@ def main(page:ft.Page):
 		spacing=50) 
 	)
  
-	mainContentFull = ft.Container(
+    mainContentFull = Container(
 		margin=ft.margin.only(left = page.window_width/4, top = page.window_height/3),
 		alignment=ft.alignment.center,
 		width=page.window_width*0.65,
 		height=page.window_height*0.3,
 		border_radius=10,
 		visible=False,
-		content=ft.Container(
+		content=Container(
 			bgcolor=ft.colors.WHITE,
 			alignment=ft.alignment.center,
 			padding=ft.padding.all(20),
-			content=ft.Column([
-   				ft.Text("STOP CURRENT QUEUE PROCESS?", size=28, color="#3c3744", weight=ft.FontWeight.BOLD, width=page.window_width*0.65,text_align=ft.TextAlign.CENTER),
-				ft.Text("WARNING: THIS WILL DISABLE STUDENTS TO\n REGISTER FOR QUEUEING", size=24, color="#DD8F88", weight=ft.FontWeight.BOLD, width=page.window_width*0.65, text_align=ft.TextAlign.CENTER),
-				ft.Row([
-					ft.ElevatedButton("YES", style=ft.ButtonStyle(bgcolor="#fbfff1", color="#3c3744", shape=ft.RoundedRectangleBorder(radius=10))), #on_click=stop_Q
-					ft.ElevatedButton("CANCEL", style=ft.ButtonStyle(bgcolor="#DD8F88", color=ft.colors.RED, shape=ft.RoundedRectangleBorder(radius=10))) #on_click=cancel
+			content=Column([
+   				Text("STOP CURRENT QUEUE PROCESS?", size=28, color="#3c3744", weight=ft.FontWeight.BOLD, width=page.window_width*0.65,text_align=ft.TextAlign.CENTER),
+				Text("WARNING: THIS WILL DISABLE STUDENTS TO\n REGISTER FOR QUEUEING", size=24, color="#DD8F88", weight=ft.FontWeight.BOLD, width=page.window_width*0.65, text_align=ft.TextAlign.CENTER),
+				Row([
+					ElevatedButton("YES", style=ft.ButtonStyle(bgcolor="#fbfff1", color="#3c3744", shape=ft.RoundedRectangleBorder(radius=10))), #on_click=stop_Q
+					ElevatedButton("CANCEL", style=ft.ButtonStyle(bgcolor="#DD8F88", color=ft.colors.RED, shape=ft.RoundedRectangleBorder(radius=10))) #on_click=cancel
 				],
 				width=page.window_width*0.65,
            		alignment=ft.MainAxisAlignment.CENTER)
@@ -205,12 +330,12 @@ def main(page:ft.Page):
 		)
 	)
  
-	mainContentAccept = ft.Container(
+    mainContentAccept = Container(
 		margin=ft.margin.only(left = page.window_width/4, top = page.window_height/3),
 		alignment=ft.alignment.center,
 		visible=False,
-  		content = ft.Column([ft.Row([
-    		ft.Container( #Search
+  		content = Column([Row([
+    		Container( #Search
 				border_radius=10,
 				bgcolor=ft.colors.WHITE,
 				alignment=ft.alignment.center,
@@ -220,13 +345,14 @@ def main(page:ft.Page):
 					offset=ft.Offset(0, 0),
 					blur_style=ft.ShadowBlurStyle.OUTER,
 					),
-				content=ft.TextField(label="STUDENT NUMBER", color="#3c3744", width=500, height=50)
+				content=TextField(label="STUDENT NUMBER", color="#3c3744", width=500, height=50) #change into a control
 			),
-			ft.Container(
-       			content=ft.ElevatedButton(text="SEARCH QUEUE", style=ft.ButtonStyle(bgcolor="#0D2650", color="#D3DEF1", shape=ft.RoundedRectangleBorder(radius=10))) #on_click=search
+			Container(
+                #add functionality
+       			content=ElevatedButton(text="SEARCH QUEUE", style=ft.ButtonStyle(bgcolor="#0D2650", color="#D3DEF1", shape=ft.RoundedRectangleBorder(radius=10))) #on_click=search
 			)],
             spacing=90),
-			ft.Container( #data table
+			Container( #data table
 				border_radius=10,
 				bgcolor=ft.colors.WHITE,
 				shadow=ft.BoxShadow(spread_radius=1,
@@ -279,17 +405,12 @@ def main(page:ft.Page):
 			)
 		],
 		spacing=50)
-	)
-
-	page.add(
-		ft.Stack([
-      		bg,
-   			eece,
-			sidemenu,
-			mainContentView,
-			mainContentFull,
-			mainContentAccept
-			])
-		)
- 
+	)   
+    page.add( # Login Page
+        Stack([
+            loginBG,
+            loginBox,
+        ]),
+    )
+    
 ft.app(target=main)
