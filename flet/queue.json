@@ -1,0 +1,293 @@
+{
+    "students": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "mode": "F2F",
+        "student_number": "2012345678"
+      },
+      {
+        "id": 2,
+        "name": "Jane Smith",
+        "mode": "Online",
+        "student_number": "2012345679"
+      },
+      {
+        "id": 3,
+        "name": "Michael Johnson",
+        "mode": "F2F",
+        "student_number": "2012345680"
+      },
+      {
+        "id": 4,
+        "name": "Emily Williams",
+        "mode": "Online",
+        "student_number": "2012345681"
+      },
+      {
+        "id": 5,
+        "name": "David Brown",
+        "mode": "F2F",
+        "student_number": "2012345682"
+      },
+      {
+        "id": 6,
+        "name": "Sarah Davis",
+        "mode": "Online",
+        "student_number": "2012345683"
+      },
+      {
+        "id": 7,
+        "name": "Matthew Wilson",
+        "mode": "F2F",
+        "student_number": "2012345684"
+      },
+      {
+        "id": 8,
+        "name": "Jessica Taylor",
+        "mode": "Online",
+        "student_number": "2012345685"
+      },
+      {
+        "id": 9,
+        "name": "Christopher Martinez",
+        "mode": "F2F",
+        "student_number": "2012345686"
+      },
+      {
+        "id": 10,
+        "name": "Amanda Anderson",
+        "mode": "Online",
+        "student_number": "2012345687"
+      },
+      {
+        "id": 11,
+        "name": "Daniel Hernandez",
+        "mode": "F2F",
+        "student_number": "2012345688"
+      },
+      {
+        "id": 12,
+        "name": "Ashley Gonzalez",
+        "mode": "Online",
+        "student_number": "2012345689"
+      },
+      {
+        "id": 13,
+        "name": "James Wilson",
+        "mode": "F2F",
+        "student_number": "2012345690"
+      },
+      {
+        "id": 14,
+        "name": "Jennifer Lopez",
+        "mode": "Online",
+        "student_number": "2012345691"
+      },
+      {
+        "id": 15,
+        "name": "Joshua Lee",
+        "mode": "F2F",
+        "student_number": "2012345692"
+      },
+      {
+        "id": 16,
+        "name": "Megan Perez",
+        "mode": "Online",
+        "student_number": "2012345693"
+      },
+      {
+        "id": 17,
+        "name": "Andrew Moore",
+        "mode": "F2F",
+        "student_number": "2012345694"
+      },
+      {
+        "id": 18,
+        "name": "Nicole King",
+        "mode": "Online",
+        "student_number": "2012345695"
+      },
+      {
+        "id": 19,
+        "name": "Ryan Wright",
+        "mode": "F2F",
+        "student_number": "2012345696"
+      },
+      {
+        "id": 20,
+        "name": "Samantha Hill",
+        "mode": "Online",
+        "student_number": "2012345697"
+      },
+      {
+        "id": 21,
+        "name": "Justin Scott",
+        "mode": "F2F",
+        "student_number": "2012345698"
+      },
+      {
+        "id": 22,
+        "name": "Lauren Green",
+        "mode": "Online",
+        "student_number": "2012345699"
+      },
+      {
+        "id": 23,
+        "name": "Brandon Baker",
+        "mode": "F2F",
+        "student_number": "2012345700"
+      },
+      {
+        "id": 24,
+        "name": "Stephanie Adams",
+        "mode": "Online",
+        "student_number": "2012345701"
+      },
+      {
+        "id": 25,
+        "name": "Jacob Nelson",
+        "mode": "F2F",
+        "student_number": "2012345702"
+      },
+      {
+        "id": 26,
+        "name": "Kayla Ramirez",
+        "mode": "Online",
+        "student_number": "2012345703"
+      },
+      {
+        "id": 27,
+        "name": "Tyler Evans",
+        "mode": "F2F",
+        "student_number": "2012345704"
+      },
+      {
+        "id": 28,
+        "name": "Brittany Torres",
+        "mode": "Online",
+        "student_number": "2012345705"
+      },
+      {
+        "id": 29,
+        "name": "Zachary Flores",
+        "mode": "F2F",
+        "student_number": "2012345706"
+      },
+      {
+        "id": 30,
+        "name": "Rachel Collins",
+        "mode": "Online",
+        "student_number": "2012345707"
+      },
+      {
+        "id": 31,
+        "name": "Cody Stewart",
+        "mode": "F2F",
+        "student_number": "2012345708"
+      },
+      {
+        "id": 32,
+        "name": "Victoria Murphy",
+        "mode": "Online",
+        "student_number": "2012345709"
+      },
+      {
+        "id": 33,
+        "name": "Austin Rogers",
+        "mode": "F2F",
+        "student_number": "2012345710"
+      },
+      {
+        "id": 34,
+        "name": "Katie Morgan",
+        "mode": "Online",
+        "student_number": "2012345711"
+      },
+      {
+        "id": 35,
+        "name": "Dylan Powell",
+        "mode": "F2F",
+        "student_number": "2012345712"
+      },
+      {
+        "id": 36,
+        "name": "Christina Ward",
+        "mode": "Online",
+        "student_number": "2012345713"
+      },
+      {
+        "id": 37,
+        "name": "Ethan Cox",
+        "mode": "F2F",
+        "student_number": "2012345714"
+      },
+      {
+        "id": 38,
+        "name": "Monica Bailey",
+        "mode": "Online",
+        "student_number": "2012345715"
+      },
+      {
+        "id": 39,
+        "name": "Benjamin Sanders",
+        "mode": "F2F",
+        "student_number": "2012345716"
+      },
+      {
+        "id": 40,
+        "name": "Haley Murphy",
+        "mode": "Online",
+        "student_number": "2012345717"
+      },
+      {
+        "id": 41,
+        "name": "Jared Price",
+        "mode": "F2F",
+        "student_number": "2012345718"
+      },
+      {
+        "id": 42,
+        "name": "Lindsey Howard",
+        "mode": "Online",
+        "student_number": "2012345719"
+      },
+      {
+        "id": 43,
+        "name": "Logan Kelly",
+        "mode": "F2F",
+        "student_number": "2012345720"
+      },
+      {
+        "id": 44,
+        "name": "Courtney Rivera",
+        "mode": "Online",
+        "student_number": "2012345721"
+      },
+      {
+        "id": 45,
+        "name": "Gabriel Coleman",
+        "mode": "F2F",
+        "student_number": "2012345722"
+      },
+      {
+        "id": 46,
+        "name": "Jordan Cooper",
+        "mode": "Online",
+        "student_number": "2012345723"
+      },
+      {
+        "id": 47,
+        "name": "Olivia Richardson",
+        "mode": "F2F",
+        "student_number": "2012345724"
+      },
+      {
+        "id": 48,
+        "name": "Sean Bailey",
+        "mode": "Online",
+        "student_number": "2012345725"
+      }
+    ]
+  }
+  
